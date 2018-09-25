@@ -3,6 +3,10 @@ Function Send-CMMessagingDDR {
         [Parameter(Mandatory=$false)]
         [string]$ADSiteName = 'Default-First-Site-Name'
     )
+    if($null -eq $Script:CMMessagingClient){
+        throw 'Please first run Set-CMMessagingClient to set the client information!'
+        return
+    }
     $Sender = New-Object -TypeName Microsoft.ConfigurationManagement.Messaging.Sender.Http.HttpSender
     $DDRMessage = [Microsoft.ConfigurationManagement.Messaging.Messages.ConfigMgrDataDiscoveryRecordMessage]::new()
     $DDRMessage.SmsId = $Script:CMMessagingClient.ClientGUID

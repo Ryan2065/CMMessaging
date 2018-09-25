@@ -5,6 +5,10 @@ Function Send-CMMessagingHardwareInventoryClass{
         [string[]]$Classes,
         [string]$Namespace = 'root\cimv2'
     )
+    if($null -eq $Script:CMMessagingClient){
+        throw 'Please first run Set-CMMessagingClient to set the client information!'
+        return
+    }
     $Sender = New-Object -TypeName Microsoft.ConfigurationManagement.Messaging.Sender.Http.HttpSender
     $HwInvMessage = [Microsoft.ConfigurationManagement.Messaging.Messages.ConfigMgrHardwareInventoryMessage]::new()
     $HwInvMessage.Settings.HostName = $Script:CMMessagingClient.ManagementPoint
