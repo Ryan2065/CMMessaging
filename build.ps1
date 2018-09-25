@@ -1,4 +1,4 @@
-Import-Module "$PSScriptRoot\CMMessaging" -Force
+#Import-Module "$PSScriptRoot\CMMessaging" -Force
 
-Publish-Module -Name 'CMMessaging' -NuGetApiKey $env:NuGetKey -Force
+Publish-Module -Path "$PSScriptRoot\CMMessaging" -NuGetApiKey $env:NuGetKey -Force
 
